@@ -19,6 +19,15 @@ Riot.context('turing.oo.js', function() {
         should('继承的类，即子类，有自己独有的方法', admin.dangerousMethod()).equals('danger!');
         should('执行自定义的initializer', guset.state).equals('正在注册中……');
     });
+    given('mixin的类',function () {
+        var mixinUser  = new MixinUser('log file'),
+            doubleMixinUser = new DoubleMixinUser('double log file');
+        console.log(mixinUser);
+        console.log(doubleMixinUser);
+        should('拥有期望的属性', mixinUser.login());
+        should('使用自己的intialize', mixinUser.log).equals('log file');
+        should('允许多个mixin(混合)', doubleMixinUser.doSomething()).equals('something');
+    });
 });
 
 Riot.run();

@@ -32,3 +32,15 @@ var Guest = turing.Class(User,{
     }
 });
 
+var MixinUser = turing.Class({
+    include: User,
+    initialize: function (log) {
+        this.log = log;
+    }
+});
+var DoubleMixinUser = turing.Class({
+    include: [NoInitializer, User],
+    initialize: function (log) {
+        this.log = log;
+    }
+});

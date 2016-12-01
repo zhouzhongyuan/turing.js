@@ -33,7 +33,7 @@ turing.oo = {
             if(typeof methods.include === 'function'){
                 turing.oo.extend(klass.prototype, methods.include.prototype);
             } else {
-                for(var i = 0; i < methods.include; i++){
+                for(var i = 0; i < methods.include.length; i++){
                     turing.oo.extend(klass.prototype, methods.include[i].prototype);
                 }
             }
