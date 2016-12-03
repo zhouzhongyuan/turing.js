@@ -6,6 +6,9 @@ turing.oo = {
         var methods = null,
             parent = undefined,
             klass = function () {
+                this.super = function (method, args) {
+                    return turing.oo.super(this.$parent, this, method, args);
+                };
                 this.initialize.apply(this, arguments);
             };
         if (typeof arguments[0] === 'function'){
@@ -17,6 +20,7 @@ turing.oo = {
 
         if(typeof parent !== 'undefined'){
             turing.oo.extend(klass.prototype, parent.prototype);
+            klass.prototype.$parent = parent.prototype;
         }
 
         turing.oo.mixin(klass, methods);
@@ -44,5 +48,8 @@ turing.oo = {
             destination[property] = source[property];
         }
         return destination;
+    },
+    super: function (parentClass, instance, method, args) {
+        return parentClass[method].apply(instance, args);
     }
 }

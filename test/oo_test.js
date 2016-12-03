@@ -28,6 +28,11 @@ Riot.context('turing.oo.js', function() {
         should('使用自己的intialize', mixinUser.log).equals('log file');
         should('允许多个mixin(混合)', doubleMixinUser.doSomething()).equals('something');
     });
+    given('使用super的继承类',function () {
+        var superUser = new SuperUser('Zhongyuan', 26);
+        should('初始化时，运行 super() ',superUser.age).equals(26);
+        should('调用其他方法时，运行super()', superUser.toString()).matches(/SuperUser:/);
+    });
 });
 
 Riot.run();

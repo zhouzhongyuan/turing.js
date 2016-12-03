@@ -14,6 +14,9 @@ var User = turing.Class({
     },
     login: function () {
         return true;
+    },
+    toString: function () {
+        return "name: "  + this.name + ", age: " + this.age;
     }
 });
 var Admin = turing.Class(User,{
@@ -44,3 +47,13 @@ var DoubleMixinUser = turing.Class({
         this.log = log;
     }
 });
+
+var SuperUser = turing.Class(User,{
+    initialize: function () {
+        this.super('initialize', arguments);
+    },
+    toString: function () {
+        return "SuperUser: " + this.super('toString');
+    }
+})
+
