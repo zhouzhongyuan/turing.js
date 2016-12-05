@@ -10,8 +10,8 @@ turing.enumerable = {
                 }
             } else {
                 for(var key in enumerable){
-                    if(hasOwnPropert.call(enumerable, key)) {
-                        callback.callback(context, enumerable[key], key, enumerable);
+                    if(Object.prototype.hasOwnProperty.call(enumerable, key)) {
+                        callback.call(context, enumerable[key], key, enumerable);
                     }
                 }
             }

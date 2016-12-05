@@ -16,5 +16,21 @@ Riot.context('turing.enumerable.js', function () {
             })
         }).equals([2, 3, 4, 5, 6]);
     })
+    given('对象',function () {
+        var obj = {one: '1', tow: '2', three: '3'};
+        should('each 迭代',function () {
+            var count = 0;
+            turing.enumerable.each(obj, function (n) {
+                count += 1;
+            });
+            return count;
+        }).equals(3);
+        should('map 迭代',function () {
+            return turing.enumerable.map(obj, function (n) {
+                return n +1;
+            })
+        }).equals(['11', '21', '31']);
+
+    })
 })
 Riot.run();
