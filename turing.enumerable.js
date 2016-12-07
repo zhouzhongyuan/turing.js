@@ -31,5 +31,17 @@ turing.enumerable = {
             results.push(callback.call(context, value, index, list));
         });
         return results;
-    }
+    },
+    filter: function (enumerable, callback, context) {
+        if(Array.prototype.filter && enumerable.filter === Array.prototype.filter){
+            return enumerable.filter(callback, context);
+        }
+        var results = [];
+        turing.enumerable.each(enumerable, function (value, index, list) {
+            if(callback.call(context, value, index, list)){
+                results.push(value);
+            }
+        })
+        return results;
+    },
 }
