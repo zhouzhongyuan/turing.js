@@ -48,4 +48,14 @@ turing.enumerable = {
         })
         return results;
     },
+    detect: function (enumerable, callback, context) {
+        var result;
+        turing.enumerable.each(enumerable, function (value, index, list) {
+            if(callback.call(context, value, index, list)){
+                result = value;
+                break;
+            }
+        })
+        return result;
+    },
 }

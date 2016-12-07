@@ -20,6 +20,16 @@ Riot.context('turing.enumerable.js', function () {
                 return n % 2 === 0;
             })
         }).equals([2, 4]);
+        should('detect 找到', function () {
+            return turing.enumerable.detect(a, function (n) {
+                return n === 1;
+            })
+        })
+        should('detect 找不到', function () {
+            return typeof turing.enumerable.detect(a, function (n) {
+                return n === 1000;
+            })
+        })
     })
     given('对象',function () {
         var obj = {one: '1', tow: '2', three: '3'};
