@@ -38,7 +38,7 @@ Riot.context('turing.enumerable.js', function () {
         should('filter 迭代，应该返回一个多维数组',function () {
             return turing.enumerable.filter(obj, function (v, i) {
                 return v < 2;
-            })
+            })[0][0]
         }).equals('one');
     })
 })

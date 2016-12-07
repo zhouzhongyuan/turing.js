@@ -39,7 +39,11 @@ turing.enumerable = {
         var results = [];
         turing.enumerable.each(enumerable, function (value, index, list) {
             if(callback.call(context, value, index, list)){
-                results.push(value);
+                if(Object.prototype.toString.call(enumerable) === '[object Array]'){
+                    results.push(value);
+                }else{
+                    results.push([index, value]);
+                }
             }
         })
         return results;
