@@ -58,4 +58,26 @@ turing.enumerable = {
         })
         return result;
     },
+    chain: function (enumerable) {
+        return new turing.enumerable.Chainer(enumerable);
+    }
 }
+
+turing.enumerable.Chainer = turing.Class({
+    initialize: function (values) {
+        this.results = values;
+    },
+    values: function () {
+        return this.results;
+    },
+});
+turing.enumerable.each(['each', 'filter', 'detect', 'map'], function (methodName) {
+    var method = turing.enumerable[methodName];
+    turing.enumerable.Chainer.prototype[methodName] = function () {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(this.results);
+        this.results = method.apply(this, args);
+        console.log(this.results, methodName);
+        return this;
+    }
+})

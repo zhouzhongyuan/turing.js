@@ -30,6 +30,9 @@ Riot.context('turing.enumerable.js', function () {
                 return n === 1000;
             })
         })
+        should('链式调用', function() {
+            return turing.enumerable.chain([1, 2, 3, 4]).filter(function(n) { return n % 2 == 0; }).map(function(n) { return n * 10; }).values();
+        }).equals([20, 40]);
     })
     given('对象',function () {
         var obj = {one: '1', tow: '2', three: '3'};
